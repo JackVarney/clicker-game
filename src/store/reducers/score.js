@@ -1,9 +1,12 @@
 import { createReducer } from "@reduxjs/toolkit";
+import { updateScore } from "../actions/update-score";
 
-const initialState = {
-  score: 0
-};
+const initialState = 0;
 
-const scoreReducer = createReducer(initialState, {});
+const scoreReducer = createReducer(initialState, {
+  [updateScore.type](state, action) {
+    return state + action.value;
+  }
+});
 
 export { scoreReducer };

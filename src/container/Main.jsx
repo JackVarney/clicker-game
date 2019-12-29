@@ -3,7 +3,7 @@ import Score from "../components/Score";
 import { useSelector } from "react-redux";
 
 function Main() {
-  const score = useSelector(state => state.score.score);
+  const score = useSelector(state => state.score);
 
   return (
     <div>
