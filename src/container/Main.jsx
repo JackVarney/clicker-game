@@ -1,13 +1,15 @@
 import React from "react";
-import Score from "../components/Score";
+import Number from "../components/Number";
 import { useSelector } from "react-redux";
 
 function Main() {
   const score = useSelector(state => state.score);
+  const customers = useSelector(state => state.customers.count);
 
   return (
     <div>
-      <Score score={score} />
+      <Number label={"Score"}>{score}</Number>
+      <Number label={"Customers"}>{customers}</Number>
     </div>
   );
 }

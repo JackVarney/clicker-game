@@ -1,7 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`renders correctly 1`] = `
-<span>
-  0
+.c0 {
+  display: block;
+}
+
+<span
+  className="c0"
+>
+  label: 0
 </span>
 `;

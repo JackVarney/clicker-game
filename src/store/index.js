@@ -1,10 +1,17 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { scoreReducer } from "./reducers/score";
+import { customersReducer } from "./reducers/customers";
 
-const store = configureStore({
-  reducer: {
-    score: scoreReducer
-  }
-});
+let store;
+const resetStore = () => {
+  store = configureStore({
+    reducer: {
+      score: scoreReducer,
+      customers: customersReducer
+    }
+  });
+};
 
-export { store };
+resetStore();
+
+export { store, resetStore };

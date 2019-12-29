@@ -5,7 +5,7 @@ const initialState = 0;
 
 const scoreReducer = createReducer(initialState, {
   [updateScore.type](state, action) {
-    return state + action.value;
+    return state + action.payload;
   }
 });
 

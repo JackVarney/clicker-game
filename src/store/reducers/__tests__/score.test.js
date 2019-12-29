@@ -8,19 +8,13 @@ it("should revert to default", () => {
 });
 
 it("should add to the score", () => {
-  const response = scoreReducer(0, {
-    type: updateScore.type,
-    value: 1
-  });
+  const response = scoreReducer(0, updateScore(1));
 
   expect(response).toEqual(1);
 });
 
 it("should subtract to the score", () => {
-  const response = scoreReducer(1, {
-    type: updateScore.type,
-    value: -1
-  });
+  const response = scoreReducer(1, updateScore(-1));
 
   expect(response).toEqual(0);
 });
