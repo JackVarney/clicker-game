@@ -2,6 +2,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import { scoreReducer } from "./reducers/score";
 import { staffReducer } from "./reducers/staff";
 import { customersReducer } from "./reducers/customers";
+import { eventsReducer } from "./reducers/events";
 
 let store;
 
@@ -10,7 +11,8 @@ const resetStore = () => {
     reducer: {
       score: scoreReducer,
       customers: customersReducer,
-      staff: staffReducer
+      staff: staffReducer,
+      events: eventsReducer
     }
   });
 };
