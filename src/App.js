@@ -6,7 +6,11 @@ import { createGame } from "./core/game";
 function App() {
   createGame();
 
-  return <Main />;
+  return (
+    <div class="App">
+      <Main />
+    </div>
+  );
 }
 
 export default App;
