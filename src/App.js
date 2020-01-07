@@ -7,7 +7,7 @@ function App() {
   createGame();
 
   return (
-    <div class="App">
+    <div className="App">
       <Main />
     </div>
   );
