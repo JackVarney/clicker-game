@@ -1,13 +1,29 @@
-import { store } from "../store";
+import { dispatch, getState } from "../store";
 import { updateScore } from "../store/actions/update-score";
 import { updateCustomers } from "../store/actions/update-customers";
+import { updateEventLimit } from "../store/actions/update-event-limit";
 
 const INTERVAL_TIME = 1000;
 const MAX_QUEUE_LENGTH = 10;
 
 function resetGame() {
-  const { score } = store.getState();
-  store.dispatch(updateScore(score - score));
+  const { score } = getState();
+  dispatch(updateScore(score - score));
+}
+
+function iterateEvents(events = []) {
+  events.forEach((event, index) => {
+    dispatch(event);
+
+    if (events.limit !== Infinity) {
+      dispatch(
+        updateEventLimit({
+          index,
+          limit: event.limit - 1
+        })
+      );
+    }
+  });
 }
 
 const createGame = () => {
@@ -15,12 +31,15 @@ const createGame = () => {
 
   setInterval(() => {
     const {
-      customers: { count, rate }
-    } = store.getState();
+      customers: { count, rate },
+      events
+    } = getState();
 
     if (count < MAX_QUEUE_LENGTH) {
-      store.dispatch(updateCustomers(rate));
+      dispatch(updateCustomers(rate));
     }
+
+    iterateEvents(events);
   }, INTERVAL_TIME);
 };
 
