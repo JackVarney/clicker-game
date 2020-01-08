@@ -13,9 +13,9 @@ function resetGame() {
 
 function iterateEvents(events = []) {
   events.forEach((event, index) => {
-    dispatch(event);
+    event.actions.forEach(el => dispatch(el));
 
-    if (events.limit !== Infinity) {
+    if (event.limit !== Infinity) {
       dispatch(
         updateEventLimit({
           index,

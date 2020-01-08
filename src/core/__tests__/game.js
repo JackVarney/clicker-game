@@ -3,13 +3,14 @@ import * as storeModule from "../../store";
 import { dispatch, getState, resetStore } from "../../store";
 import { addEvent } from "../../store/actions/add-event";
 import { updateEventLimit } from "../../store/actions/update-event-limit";
+import { createGameEvent } from "../create-game-event";
 
 jest.useFakeTimers();
 beforeEach(() => {
   resetStore();
 
   jest.spyOn(storeModule, "dispatch");
-  dispatch(addEvent({ type: "SOME POSITIVE EVENT", limit: 1 }));
+  dispatch(addEvent(createGameEvent([{ type: "SOME POSITIVE EVENT" }], 1)));
 
   createGame();
 });
@@ -19,11 +20,11 @@ it("should increase count on new tick", () => {
 
   jest.advanceTimersByTime(1000);
 
-  expect(getState().customers.count).toEqual(1);
+  expect(getState().customers.count).toEqual(3);
 
   jest.advanceTimersByTime(1000);
 
-  expect(getState().customers.count).toEqual(2);
+  expect(getState().customers.count).toEqual(6);
 });
 
 it("should never exceed max queue length", () => {
@@ -32,12 +33,11 @@ it("should never exceed max queue length", () => {
   expect(getState().customers.count).toEqual(10);
 });
 
-it("should dispatch each event in the store where its limit is positive", () => {
+it("should dispatch each event in the store", () => {
   jest.advanceTimersByTime(1000);
 
   expect(dispatch).toHaveBeenCalledWith({
-    type: "SOME POSITIVE EVENT",
-    limit: 1
+    type: "SOME POSITIVE EVENT"
   });
 });
 
