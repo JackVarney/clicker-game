@@ -1,14 +1,12 @@
-import { dispatch, getState } from "../store";
-import { updateScore } from "../store/actions/update-score";
-import { updateCustomers } from "../store/actions/update-customers";
-import { updateEventLimit } from "../store/actions/update-event-limit";
+import { dispatch, getState } from '../store';
+import { updateScore } from '../store/actions/update-score';
+import { updateCustomers } from '../store/actions/update-customers';
+import { updateEventLimit } from '../store/actions/update-event-limit';
 
 const INTERVAL_TIME = 1000;
-const MAX_QUEUE_LENGTH = 10;
 
 function resetGame() {
-  const { score } = getState();
-  dispatch(updateScore(score - score));
+  dispatch(updateScore(0));
 }
 
 function iterateEvents(events = []) {
@@ -19,28 +17,26 @@ function iterateEvents(events = []) {
       dispatch(
         updateEventLimit({
           index,
-          limit: event.limit - 1
-        })
+          limit: event.limit - 1,
+        }),
       );
     }
   });
 }
 
+const processTick = () => {
+  const {
+    customers: { rate },
+    events,
+  } = getState();
+
+  iterateEvents([...events, { actions: [updateCustomers(rate)], limit: 1 }]);
+};
+
 const createGame = () => {
   resetGame();
 
-  setInterval(() => {
-    const {
-      customers: { count, rate },
-      events
-    } = getState();
-
-    if (count < MAX_QUEUE_LENGTH) {
-      dispatch(updateCustomers(rate));
-    }
-
-    iterateEvents(events);
-  }, INTERVAL_TIME);
+  setInterval(processTick, INTERVAL_TIME);
 };
 
 export { createGame };

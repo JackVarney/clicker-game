@@ -1,8 +1,8 @@
-import { configureStore } from "@reduxjs/toolkit";
-import { scoreReducer } from "./reducers/score";
-import { staffReducer } from "./reducers/staff";
-import { customersReducer } from "./reducers/customers";
-import { eventsReducer } from "./reducers/events";
+import { configureStore } from '@reduxjs/toolkit';
+import { scoreReducer } from './reducers/score';
+import { staffReducer } from './reducers/staff';
+import { customersReducer } from './reducers/customers';
+import { eventsReducer } from './reducers/events';
 
 const createStore = () =>
   new Proxy(
@@ -11,17 +11,19 @@ const createStore = () =>
         score: scoreReducer,
         customers: customersReducer,
         staff: staffReducer,
-        events: eventsReducer
-      }
+        events: eventsReducer,
+      },
     }),
     {
       /* 
         bind each function on the store to the store
       */
       get(target, prop) {
-        return target[prop].bind(target);
-      }
-    }
+        return typeof target[prop] === 'function'
+          ? target[prop].bind(target)
+          : target[prop];
+      },
+    },
   );
 
 /*

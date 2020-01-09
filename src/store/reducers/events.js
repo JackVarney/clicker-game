@@ -1,6 +1,7 @@
-import { createReducer } from "@reduxjs/toolkit";
-import { addEvent } from "../actions/add-event";
-import { updateEventLimit } from "../actions/update-event-limit";
+import { createReducer } from '@reduxjs/toolkit';
+import { addEvent } from '../actions/add-event';
+import { updateEventLimit } from '../actions/update-event-limit';
+import { updateCustomers } from '../actions/update-customers';
 
 const initialState = [];
 
@@ -20,7 +21,7 @@ const _updateEventLimit = (state, { payload: { index, limit } }) => {
 
 const eventsReducer = createReducer(initialState, {
   [addEvent.type]: _addEvent,
-  [updateEventLimit.type]: _updateEventLimit
+  [updateEventLimit.type]: _updateEventLimit,
 });
 
 export { eventsReducer };
