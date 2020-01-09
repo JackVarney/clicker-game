@@ -1,6 +1,13 @@
-const createGameEvent = (actions = [], limit = Infinity) => ({
+const gameEvents = {
+  staffMember: 'STAFF_MEMBER',
+};
+
+const createGameEvent = name => (actions = [], limit = Infinity) => ({
+  name,
   actions,
-  limit
+  limit,
 });
 
-export { createGameEvent };
+const createStaffEvent = createGameEvent(gameEvents.staffMember);
+
+export { gameEvents, createGameEvent, createStaffEvent };

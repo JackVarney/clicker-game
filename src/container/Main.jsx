@@ -1,10 +1,10 @@
-import React from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { updateCustomers } from "../store/actions/update-customers";
-import { updateScore } from "../store/actions/update-score";
-import Number from "../components/Number";
-import Button from "../components/Button";
-import Staff from "./Staff";
+import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { updateCustomers } from '../store/actions/update-customers';
+import { updateScore } from '../store/actions/update-score';
+import Number from '../components/Number';
+import Button from '../components/Button';
+import Staff from './Staff';
 
 function Main() {
   const dispatch = useDispatch();
@@ -13,8 +13,8 @@ function Main() {
 
   return (
     <div>
-      <Number label={"Score"}>{score}</Number>
-      <Number label={"Customers"}>{customers}</Number>
+      <Number label={'Score'}>{score}</Number>
+      <Number label={'Customers'}>{customers}</Number>
       <Button
         onClick={() => {
           if (customers > 0) {
