@@ -1,12 +1,14 @@
-import { createReducer } from "@reduxjs/toolkit";
-import { updateScore } from "../actions/update-score";
+import { updateScore } from '../actions/update-score';
 
-const initialState = 0;
+const scoreInitialState = { score: 0 };
 
-const scoreReducer = createReducer(initialState, {
-  [updateScore.type](state, action) {
-    return state + action.payload;
-  }
+const _updateScore = (state, action) => ({
+  ...state,
+  score: state.score + action.payload,
 });
 
-export { scoreReducer };
+const scoreReducer = {
+  [updateScore.type]: _updateScore,
+};
+
+export { scoreInitialState, scoreReducer };

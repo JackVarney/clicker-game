@@ -26,7 +26,9 @@ function iterateEvents(events = []) {
 
 const processTick = () => {
   const {
-    customers: { rate },
+    game: {
+      customers: { rate },
+    },
     events,
   } = getState();
 

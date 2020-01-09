@@ -1,7 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { scoreReducer } from './reducers/score';
 import { staffReducer } from './reducers/staff';
-import { customersReducer } from './reducers/customers';
+import { gameDataReducer } from './reducers/game-data';
 import { eventsReducer } from './reducers/events';
 
 const createStore = () =>
@@ -9,7 +9,7 @@ const createStore = () =>
     configureStore({
       reducer: {
         score: scoreReducer,
-        customers: customersReducer,
+        game: gameDataReducer,
         staff: staffReducer,
         events: eventsReducer,
       },

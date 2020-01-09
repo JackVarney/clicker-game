@@ -5,7 +5,7 @@ import StaffFireButton from './StaffFireButton';
 import Number from '../components/Number';
 
 const Staff = () => {
-  const staffCount = useSelector(state => state.staff.numberOfStaff);
+  const staffCount = useSelector(state => state.game.numberOfStaff);
 
   return (
     <div>

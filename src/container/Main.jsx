@@ -8,8 +8,8 @@ import Staff from './Staff';
 
 function Main() {
   const dispatch = useDispatch();
-  const score = useSelector(state => state.score);
-  const customers = useSelector(state => state.customers.count);
+  const score = useSelector(state => state.game.score);
+  const customers = useSelector(state => state.game.customers.count);
 
   return (
     <div>

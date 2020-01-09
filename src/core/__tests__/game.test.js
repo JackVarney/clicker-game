@@ -16,21 +16,15 @@ beforeEach(() => {
 });
 
 it('should increase count on new tick', () => {
-  expect(getState().customers.count).toEqual(0);
+  expect(getState().game.customers.count).toEqual(0);
 
   jest.advanceTimersByTime(1000);
 
-  expect(getState().customers.count).toEqual(3);
+  expect(getState().game.customers.count).toEqual(3);
 
   jest.advanceTimersByTime(1000);
 
-  expect(getState().customers.count).toEqual(6);
-});
-
-it('should never exceed max queue length', () => {
-  jest.advanceTimersByTime(100000);
-
-  expect(getState().customers.count).toEqual(10);
+  expect(getState().game.customers.count).toEqual(6);
 });
 
 it('should dispatch each event in the store', () => {
