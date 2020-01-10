@@ -1,7 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { scoreReducer } from './reducers/score';
 import { staffReducer } from './reducers/staff';
-import { gameDataReducer } from './reducers/game-data';
+import { gameDataReducer } from './reducers/game';
 import { eventsReducer } from './reducers/events';
 
 const createStore = () =>

@@ -2,6 +2,7 @@ import { dispatch, getState } from '../store';
 import { updateScore } from '../store/actions/update-score';
 import { updateCustomers } from '../store/actions/update-customers';
 import { updateEventLimit } from '../store/actions/update-event-limit';
+import { gameEventMap } from './game-event-map';
 
 const INTERVAL_TIME = 1000;
 
@@ -11,7 +12,13 @@ function resetGame() {
 
 function iterateEvents(events = []) {
   events.forEach((event, index) => {
-    event.actions.forEach(el => dispatch(el));
+    event.actions.forEach(actionOrActionName => {
+      if (typeof actionOrActionName === 'string') {
+        actionOrActionName = gameEventMap[actionOrActionName];
+      }
+
+      dispatch(actionOrActionName);
+    });
 
     if (event.limit !== Infinity) {
       dispatch(
