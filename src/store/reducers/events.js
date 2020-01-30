@@ -1,13 +1,14 @@
-import { createReducer } from '@reduxjs/toolkit';
-import { addEvent } from '../actions/add-event';
-import { updateEventLimit } from '../actions/update-event-limit';
-import { removeEvent } from '../actions/remove-event';
+import { createReducer } from "@reduxjs/toolkit";
+import { addEvent } from "../actions/add-event";
+import { updateEventLimit } from "../actions/update-event-limit";
+import { removeEvent } from "../actions/remove-event";
 
 const initialState = [];
 
-const _addEvent = (state, { payload }) => [...state, payload];
+const _addEvent = (state = [], { payload }) =>
+  console.log(payload) || [...state, payload];
 
-const _updateEventLimit = (state, { payload: { index, limit } }) => {
+const _updateEventLimit = (state = [], { payload: { index, limit } }) => {
   const newState = [...state];
 
   if (limit === 0) {
@@ -31,7 +32,7 @@ const _removeEvent = (state = [], { payload }) => {
 const eventsReducer = createReducer(initialState, {
   [addEvent.type]: _addEvent,
   [updateEventLimit.type]: _updateEventLimit,
-  [removeEvent.type]: _removeEvent,
+  [removeEvent.type]: _removeEvent
 });
 
 export { eventsReducer };

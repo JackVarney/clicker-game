@@ -1,7 +1,7 @@
 const createGameEvent = name => (actions = [], limit = Infinity) => ({
   name,
   actions,
-  limit,
+  limit
 });
 
 export { createGameEvent };

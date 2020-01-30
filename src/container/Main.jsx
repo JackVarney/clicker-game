@@ -1,9 +1,10 @@
-import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { serveCustomer } from '../store/actions/serve-customer';
-import Number from '../components/Number';
-import Button from '../components/Button';
-import Staff from './Staff';
+import React from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { addEvent } from "../store/actions/add-event";
+import { createServeCustomerEvent } from "../core/events/serve-customer";
+import Number from "../components/Number";
+import Button from "../components/Button";
+import Staff from "./Staff";
 
 function Main() {
   const dispatch = useDispatch();
@@ -12,11 +13,11 @@ function Main() {
 
   return (
     <div>
-      <Number label={'Score'}>{score}</Number>
-      <Number label={'Customers'}>{customers}</Number>
+      <Number label={"Score"}>{score}</Number>
+      <Number label={"Customers"}>{customers}</Number>
       <Button
         onClick={() => {
-          dispatch(serveCustomer);
+          dispatch(addEvent(createServeCustomerEvent(1)));
         }}
       >
         Serve customer

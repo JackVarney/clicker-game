@@ -1,7 +1,7 @@
 import {
-  serveCustomerKey,
-  serveCustomer,
-} from '../store/actions/serve-customer';
+  serveCustomerFunctionKey,
+  serveCustomer
+} from "./events/serve-customer";
 
 /*
     Redux wont store functions.
@@ -9,7 +9,7 @@ import {
 */
 
 const gameEventMap = {
-  [serveCustomerKey]: serveCustomer,
+  [serveCustomerFunctionKey]: serveCustomer
 };
 
 export { gameEventMap };

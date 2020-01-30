@@ -1,8 +1,8 @@
-import { dispatch, getState } from '../store';
-import { updateScore } from '../store/actions/update-score';
-import { updateCustomers } from '../store/actions/update-customers';
-import { updateEventLimit } from '../store/actions/update-event-limit';
-import { gameEventMap } from './game-event-map';
+import { dispatch, getState } from "../store";
+import { updateScore } from "../store/actions/update-score";
+import { updateCustomers } from "../store/actions/update-customers";
+import { updateEventLimit } from "../store/actions/update-event-limit";
+import { gameEventMap } from "./game-event-map";
 
 const INTERVAL_TIME = 1000;
 
@@ -11,21 +11,23 @@ function resetGame() {
 }
 
 function iterateEvents(events = []) {
-  events.forEach((event, index) => {
-    event.actions.forEach(actionOrActionName => {
-      if (typeof actionOrActionName === 'string') {
-        actionOrActionName = gameEventMap[actionOrActionName];
-      }
+  events.forEach(({ actions, limit }, index) => {
+    actions.forEach(actionOrActionFunctionKey => {
+      const isFunctionKey = typeof actionOrActionFunctionKey === "string";
 
-      dispatch(actionOrActionName);
+      dispatch(
+        isFunctionKey
+          ? gameEventMap[actionOrActionFunctionKey]
+          : actionOrActionFunctionKey
+      );
     });
 
-    if (event.limit !== Infinity) {
+    if (limit !== Infinity) {
       dispatch(
         updateEventLimit({
           index,
-          limit: event.limit - 1,
-        }),
+          limit: limit - 1
+        })
       );
     }
   });
@@ -34,9 +36,9 @@ function iterateEvents(events = []) {
 const processTick = () => {
   const {
     game: {
-      customers: { rate },
+      customers: { rate }
     },
-    events,
+    events
   } = getState();
 
   iterateEvents([...events, { actions: [updateCustomers(rate)], limit: 1 }]);
