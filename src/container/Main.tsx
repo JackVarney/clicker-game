@@ -1,10 +1,10 @@
 import React from "react";
-import { useSelector, useDispatch } from "react-redux";
 import { addEvent } from "../store/actions/add-event";
-import { createServeCustomerEvent } from "../core/events/serve-customer";
+import { createServeCustomerAction } from "../game/actions/serve-customer";
 import Number from "../components/Number";
 import Button from "../components/Button";
 import Staff from "./Staff";
+import { useSelector, useDispatch } from "../core/typed-react-redux";
 
 function Main() {
   const dispatch = useDispatch();
@@ -17,7 +17,7 @@ function Main() {
       <Number label={"Customers"}>{customers}</Number>
       <Button
         onClick={() => {
-          dispatch(addEvent(createServeCustomerEvent(1)));
+          dispatch(addEvent(createServeCustomerAction(1)));
         }}
       >
         Serve customer

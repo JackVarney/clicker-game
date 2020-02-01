@@ -1,8 +1,8 @@
 import { removeEvent } from "./remove-event";
 import { updateStaffCount } from "./update-staff-count";
-import { serveCustomerFunctionKey } from "../../core/events/serve-customer";
+import { serveCustomerFunctionKey } from "../../game/actions/serve-customer";
 
-const removeStaffMember = dispatch => {
+const removeStaffMember = () => dispatch => {
   dispatch(removeEvent(serveCustomerFunctionKey));
   dispatch(updateStaffCount(-1));
 };
