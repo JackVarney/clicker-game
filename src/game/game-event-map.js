@@ -1,7 +1,7 @@
 import {
   serveCustomerFunctionKey,
   serveCustomer
-} from "./events/serve-customer";
+} from "./actions/serve-customer";
 
 /*
     Redux wont store functions.

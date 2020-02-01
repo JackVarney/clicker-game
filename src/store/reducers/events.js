@@ -5,8 +5,7 @@ import { removeEvent } from "../actions/remove-event";
 
 const initialState = [];
 
-const _addEvent = (state = [], { payload }) =>
-  console.log(payload) || [...state, payload];
+const _addEvent = (state = [], { payload }) => [...state, payload];
 
 const _updateEventLimit = (state = [], { payload: { index, limit } }) => {
   const newState = [...state];

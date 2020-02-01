@@ -16,7 +16,7 @@ const serveCustomer = (dispatch, getState) => {
   }
 };
 
-const createServeCustomerEvent = (limit = Infinity) =>
+const createServeCustomerAction = (limit = Infinity) =>
   createGameEvent(serveCustomerFunctionKey)([serveCustomerFunctionKey], limit);
 
-export { serveCustomer, serveCustomerFunctionKey, createServeCustomerEvent };
+export { serveCustomer, serveCustomerFunctionKey, createServeCustomerAction };
