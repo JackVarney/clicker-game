@@ -1,6 +1,6 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import { render, fireEvent, waitForElement } from "@testing-library/react";
+import { render, fireEvent } from "@testing-library/react";
 import Button from "../Button";
 
 it("renders correctly", () => {
@@ -13,9 +13,9 @@ it("renders correctly", () => {
 
 it("should call onClick function when clicked", () => {
   const onClick = jest.fn();
-  const component = render(<Button onClick={onClick}>Some text</Button>);
+  const component = render(<Button onClick={onClick}>Some text</Button>)!;
 
-  fireEvent.click(component.container.firstChild);
+  fireEvent.click(component.container.firstChild as Element);
 
   expect(onClick).toHaveBeenCalled();
 });
