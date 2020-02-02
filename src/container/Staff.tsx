@@ -1,5 +1,5 @@
 import React from "react";
-import { useSelector } from "../core/typed-react-redux";
+import { useSelector, useDispatch } from "../store";
 import StaffHireButton from "./StaffHireButton";
 import StaffFireButton from "./StaffFireButton";
 import Number from "../components/Number";

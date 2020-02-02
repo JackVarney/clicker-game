@@ -4,7 +4,7 @@ import { createServeCustomerAction } from "../game/actions/serve-customer";
 import Number from "../components/Number";
 import Button from "../components/Button";
 import Staff from "./Staff";
-import { useSelector, useDispatch } from "../core/typed-react-redux";
+import { useSelector, useDispatch } from "../store";
 
 function Main() {
   const dispatch = useDispatch();

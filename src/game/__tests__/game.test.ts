@@ -3,14 +3,17 @@ import * as storeModule from "../../store";
 import { dispatch, getState, resetStore } from "../../store";
 import { addEvent } from "../../store/actions/add-event";
 import { updateEventLimit } from "../../store/actions/update-event-limit";
-import { createGameEvent } from "../create-game-event";
+import { createGameAction } from "../create-game-action";
 
 jest.useFakeTimers();
+
 beforeEach(() => {
   resetStore();
 
   jest.spyOn(storeModule, "dispatch");
-  dispatch(addEvent(createGameEvent()([{ type: "SOME POSITIVE EVENT" }], 1)));
+  dispatch(
+    addEvent(createGameAction("", [{ type: "SOME POSITIVE EVENT" }])(1))
+  );
 
   createGame();
 });

@@ -1,7 +1,7 @@
 import React from "react";
 import { addStaffMember } from "../store/actions/add-staff-member";
 import { updateScore } from "../store/actions/update-score";
-import { useSelector, useDispatch } from "../core/typed-react-redux";
+import { useDispatch, useSelector } from "../store";
 import Button from "../components/Button";
 
 const StaffHireButton = () => {

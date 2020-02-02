@@ -1,9 +1,12 @@
 import { updateCustomers } from "../../store/actions/update-customers";
 import { updateScore } from "../../store/actions/update-score";
-import { createGameEvent } from "../create-game-event";
+import { createGameAction } from "../create-game-action";
+import { AppThunk } from "../../store";
+import { ActionCreator } from "@reduxjs/toolkit";
 
 const serveCustomerFunctionKey = "SERVE_CUSTOMER";
-const serveCustomer = (dispatch, getState) => {
+
+const serveCustomer: ActionCreator<AppThunk> = () => (dispatch, getState) => {
   const {
     game: {
       customers: { count }
@@ -16,7 +19,8 @@ const serveCustomer = (dispatch, getState) => {
   }
 };
 
-const createServeCustomerAction = (limit = Infinity) =>
-  createGameEvent(serveCustomerFunctionKey)([serveCustomerFunctionKey], limit);
+const createServeCustomerAction = createGameAction(serveCustomerFunctionKey, [
+  serveCustomerFunctionKey
+]);
 
 export { serveCustomer, serveCustomerFunctionKey, createServeCustomerAction };
