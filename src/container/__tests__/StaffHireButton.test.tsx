@@ -8,31 +8,29 @@ jest.mock("react-redux", () => ({
   useSelector: jest.fn()
 }));
 
-jest.fn().mockReturnValueOnce;
-
 const dispatch = jest.fn();
 beforeEach(() => {
   jest.resetAllMocks();
 
-  useDispatch.mockReturnValue(dispatch);
+  (useDispatch as jest.Mock).mockReturnValue(dispatch);
 });
 
 it("should hire a staff member if score is greater than or equal 50", () => {
-  useSelector.mockReturnValueOnce(50);
+  (useSelector as jest.Mock).mockReturnValueOnce(50);
 
   const component = render(<StaffHireButton />);
 
-  fireEvent.click(component.container.firstChild);
+  fireEvent.click(component.container.firstChild as Element);
 
   expect(dispatch).toHaveBeenCalled();
 });
 
 it("should not hire a staff member if score is less than 50", () => {
-  useSelector.mockReturnValueOnce(49);
+  (useSelector as jest.Mock).mockReturnValueOnce(49);
 
   const component = render(<StaffHireButton />);
 
-  fireEvent.click(component.container.firstChild);
+  fireEvent.click(component.container.firstChild as Element);
 
   expect(dispatch).toHaveBeenCalledTimes(0);
 });
