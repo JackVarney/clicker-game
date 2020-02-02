@@ -4,9 +4,18 @@ import { ActionCreator } from "@reduxjs/toolkit";
 import { AppThunk } from "..";
 import { serveCustomerFunctionKey } from "../../game/events/serve-customer";
 
-const removeStaffMember: ActionCreator<AppThunk> = () => dispatch => {
-  dispatch(removeEvent(serveCustomerFunctionKey));
-  dispatch(updateStaffCount(-1));
+const removeStaffMember: ActionCreator<AppThunk> = () => (
+  dispatch,
+  getState
+) => {
+  const {
+    game: { numberOfStaff }
+  } = getState();
+
+  if (numberOfStaff !== 0) {
+    dispatch(removeEvent(serveCustomerFunctionKey));
+    dispatch(updateStaffCount(-1));
+  }
 };
 
 export { removeStaffMember };
