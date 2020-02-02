@@ -1,10 +1,10 @@
 import React from "react";
 import { addEvent } from "../store/actions/add-event";
-import { createServeCustomerAction } from "../game/actions/serve-customer";
+import { useSelector, useDispatch } from "../store";
 import Number from "../components/Number";
 import Button from "../components/Button";
 import Staff from "./Staff";
-import { useSelector, useDispatch } from "../store";
+import { createServeCustomerAction } from "../game/events/serve-customer";
 
 function Main() {
   const dispatch = useDispatch();

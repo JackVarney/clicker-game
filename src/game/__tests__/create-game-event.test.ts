@@ -1,7 +1,7 @@
-import { createGameAction } from "../create-game-action";
+import { createGameEvent } from "../create-game-event";
 
 it("should create a game event", () => {
-  const gameEvent = createGameAction("event")();
+  const gameEvent = createGameEvent("event", [])();
 
   expect(gameEvent).toEqual({
     name: "event",

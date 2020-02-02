@@ -1,23 +1,19 @@
 import { dispatch, getState } from "../store";
 import { updateScore } from "../store/actions/update-score";
-import { updateCustomers } from "../store/actions/update-customers";
 import { updateEventLimit } from "../store/actions/update-event-limit";
-import { gameEventMap, GameEventMap } from "./game-event-map";
-import { GameEvent } from "../core/types/GameEvent";
+import { GameEvent, GameEventKey } from "../core/types/GameEvent";
+import { gameEventMap } from "./game-event-map";
+import { GameAction } from "../core/types/GameAction";
 
 const INTERVAL_TIME = 1000;
 
 function iterateEvents(events: GameEvent[] = []) {
   const iterateActions = (limit: number, index: number) => (
-    actionOrActionFunctionKey: keyof GameEventMap | Function
+    action: GameAction
   ) => {
-    const isFunctionKey = typeof actionOrActionFunctionKey === "string";
-
-    dispatch(
-      isFunctionKey
-        ? gameEventMap[actionOrActionFunctionKey as keyof GameEventMap]
-        : actionOrActionFunctionKey
-    );
+    const actionCreator = gameEventMap[action.key];
+    // @ts-ignore
+    dispatch(actionCreator(...action.arguments));
 
     if (limit !== Infinity) {
       dispatch(
@@ -44,7 +40,12 @@ const tick = () => {
 
   const increaseCustomersEvent: GameEvent = {
     name: "",
-    actions: [updateCustomers(rate)],
+    actions: [
+      {
+        key: GameEventKey.updateCustomer,
+        arguments: [rate]
+      }
+    ],
     limit: 1
   };
 

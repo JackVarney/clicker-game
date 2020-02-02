@@ -8,7 +8,12 @@ it("should dispatch events to add staff member", () => {
   expect(dispatch).toHaveBeenNthCalledWith(1, {
     type: "ADD_EVENT",
     payload: {
-      actions: ["SERVE_CUSTOMER"],
+      actions: [
+        {
+          key: "SERVE_CUSTOMER",
+          arguments: []
+        }
+      ],
       limit: Infinity,
       name: "SERVE_CUSTOMER"
     }

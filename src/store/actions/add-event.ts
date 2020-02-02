@@ -1,9 +1,6 @@
 import { createAction } from "@reduxjs/toolkit";
+import { GameEvent } from "../../core/types/GameEvent";
 
-const addEvent = createAction<{
-  name: string;
-  actions: string[];
-  limit: number;
-}>("ADD_EVENT");
+const addEvent = createAction<GameEvent>("ADD_EVENT");
 
 export { addEvent };

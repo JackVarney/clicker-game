@@ -1,7 +1,7 @@
 import React from "react";
 import "./App.css";
 import Main from "./container/Main";
-import { createGame } from "./core/game";
+import { createGame } from "./game/game";
 
 function App() {
   createGame();

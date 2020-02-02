@@ -1,20 +1,15 @@
-import {
-  serveCustomerFunctionKey,
-  serveCustomer
-} from "./actions/serve-customer";
-import { AppThunk } from "../core/redux";
+import { serveCustomer } from "../store/actions/serve-customer";
+import { GameEventKey } from "../core/types/GameEvent";
+import { updateCustomers } from "../store/actions/update-customers";
 
 /*
     Redux wont store functions.
     Therefore events will be stored as references to the function that needs to be called.
 */
 
-export interface GameEventMap {
-  [serveCustomerFunctionKey]: AppThunk;
-}
-
-const gameEventMap: GameEventMap = {
-  [serveCustomerFunctionKey]: serveCustomer
+const gameEventMap = {
+  [GameEventKey.serveCustomer]: serveCustomer,
+  [GameEventKey.updateCustomer]: updateCustomers
 };
 
 export { gameEventMap };
