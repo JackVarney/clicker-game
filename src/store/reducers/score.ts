@@ -1,6 +1,6 @@
 import { updateScore } from "../actions/update-score";
-import { GameState, GameBuilder } from "./initial-game-state";
 import { Reducer } from "@reduxjs/toolkit";
+import { GameBuilder, GameState } from "./game";
 
 const _updateScore: Reducer<GameState> = (state, action) => ({
   ...state!,

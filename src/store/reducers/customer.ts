@@ -1,6 +1,6 @@
 import { updateCustomers } from "../actions/update-customers";
 import { Reducer } from "@reduxjs/toolkit";
-import { GameState, GameBuilder } from "./initial-game-state";
+import { GameState, GameBuilder } from "./game";
 
 const _updateCustomers: Reducer<GameState> = (state, { payload }) => {
   const { customers } = state!;

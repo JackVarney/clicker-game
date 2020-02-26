@@ -1,5 +1,5 @@
 import { updateStaffCount } from "../actions/update-staff-count";
-import { GameState, GameBuilder } from "./initial-game-state";
+import { GameState, GameBuilder } from "./game";
 import { Reducer } from "@reduxjs/toolkit";
 
 const _updateStaffCount: Reducer<GameState> = (state, { payload }) => {
