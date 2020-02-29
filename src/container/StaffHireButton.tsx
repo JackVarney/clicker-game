@@ -1,23 +1,19 @@
 import React from "react";
 import { addStaffMember } from "../store/actions/add-staff-member";
-import { updateScore } from "../store/actions/update-score";
-import { useDispatch, useSelector } from "../store";
+import { useDispatch } from "../store";
 import Button from "../components/Button";
+import { staffHireCost } from "../core/constants/staff-hire-cost";
 
 const StaffHireButton = () => {
   const dispatch = useDispatch();
-  const score = useSelector(state => state.game.score);
 
   return (
     <Button
       onClick={() => {
-        if (score >= 50) {
-          dispatch(updateScore(-50));
-          dispatch(addStaffMember());
-        }
+        dispatch(addStaffMember());
       }}
     >
-      Hire staff member
+      {`Hire staff member ($${staffHireCost})`}
     </Button>
   );
 };
