@@ -1,8 +1,9 @@
-import { createReducer } from "@reduxjs/toolkit";
+import { createReducer, ActionReducerMapBuilder } from "@reduxjs/toolkit";
 import { customerReducerBuilder } from "./customer";
 import { scoreReducerBuilder } from "./score";
 import { staffReducerBuilder } from "./staff";
-import { ActionReducerMapBuilder } from "@reduxjs/toolkit";
+import { advertisingReducerBuilder } from "./advertising";
+import { AdvertisingPackage } from "../../core/types/AdvertisingPackage";
 
 export const initialGameState = {
   customers: {
@@ -12,7 +13,8 @@ export const initialGameState = {
   },
   score: 0,
   maxStaff: 5,
-  numberOfStaff: 0
+  numberOfStaff: 0,
+  advertisingPackage: AdvertisingPackage.none
 };
 
 export type GameState = typeof initialGameState | undefined;
@@ -22,6 +24,7 @@ const gameDataReducer = createReducer(initialGameState, builder => {
   customerReducerBuilder(builder);
   scoreReducerBuilder(builder);
   staffReducerBuilder(builder);
+  advertisingReducerBuilder(builder);
 });
 
 export { gameDataReducer };

@@ -2,6 +2,7 @@ import React, { FC } from "react";
 import styled from "styled-components";
 import { useSelector } from "../store";
 import Number from "../components/Number";
+import { calculateCustomerRate } from "../core/util";
 
 const Wrapper = styled.div`
   position: absolute;
@@ -16,6 +17,9 @@ const Wrapper = styled.div`
 `;
 
 const Shop: FC = () => {
+  const advertisingPackage = useSelector(
+    state => state.game.advertisingPackage
+  );
   const customerRate = useSelector(state => state.game.customers.rate);
   const maxCustomers = useSelector(state => state.game.customers.maxCustomers);
   const score = useSelector(state => state.game.score);
@@ -25,7 +29,9 @@ const Shop: FC = () => {
     <Wrapper>
       <Number label="Cash">{score}</Number>
       <Number label="Customers">{customers}</Number>
-      <Number label="New customers">{customerRate}</Number>
+      <Number label="New daily customers">
+        {calculateCustomerRate(customerRate, advertisingPackage)}
+      </Number>
       <Number label="Max customers">{maxCustomers}</Number>
     </Wrapper>
   );

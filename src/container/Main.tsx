@@ -5,6 +5,7 @@ import { createServeCustomerAction } from "../game/events/serve-customer";
 import LoadingButton from "../components/LoadingButton";
 import Staff from "./Staff";
 import Shop from "./Shop";
+import Advertising from "./Advertising";
 
 function Main() {
   const dispatch = useDispatch();
@@ -21,6 +22,7 @@ function Main() {
         Serve customer
       </LoadingButton>
       <Staff />
+      <Advertising />
     </div>
   );
 }
