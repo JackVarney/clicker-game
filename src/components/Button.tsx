@@ -1,11 +1,14 @@
 import React, { FC } from "react";
 
-interface Props {
+export interface ButtonProps {
   onClick: () => void;
+  disabled?: boolean;
 }
 
-const Button: FC<Props> = ({ onClick, children }) => (
-  <button onClick={onClick}>{children}</button>
+const Button: FC<ButtonProps> = ({ onClick, children, disabled }) => (
+  <button onClick={onClick} disabled={disabled}>
+    {children}
+  </button>
 );
 
 export default Button;

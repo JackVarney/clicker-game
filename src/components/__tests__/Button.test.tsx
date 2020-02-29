@@ -19,3 +19,13 @@ it("should call onClick function when clicked", () => {
 
   expect(onClick).toHaveBeenCalled();
 });
+
+it("should be disabled", () => {
+  const component = render(
+    <Button onClick={() => {}} disabled>
+      Some text
+    </Button>
+  )!;
+
+  expect(component.container.firstChild).toHaveAttribute("disabled");
+});

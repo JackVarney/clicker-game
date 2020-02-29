@@ -2,7 +2,7 @@ import React from "react";
 import { addEvent } from "../store/actions/add-event";
 import { useDispatch } from "../store";
 import { createServeCustomerAction } from "../game/events/serve-customer";
-import Button from "../components/Button";
+import LoadingButton from "../components/LoadingButton";
 import Staff from "./Staff";
 import Shop from "./Shop";
 
@@ -12,13 +12,14 @@ function Main() {
   return (
     <div>
       <Shop></Shop>
-      <Button
+      <LoadingButton
         onClick={() => {
           dispatch(addEvent(createServeCustomerAction(1)));
         }}
+        disabled
       >
         Serve customer
-      </Button>
+      </LoadingButton>
       <Staff />
     </div>
   );
